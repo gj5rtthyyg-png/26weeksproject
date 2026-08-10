@@ -66,8 +66,35 @@ canvas{width:100%;height:230px;background:#fafafa;border-radius:14px}footer{text
 <section id="food" class="tab">
 <div class="card"><h2>Starting nutrition</h2><p><b>~1,650 kcal/day • 120–140 g protein</b></p><p class="muted">The daily calorie target is adjusted from your WHOOP context and your weight trend. Do not automatically eat back all WHOOP calories burned.</p></div>
 <div class="card"><h2>Example day</h2><h3>Breakfast — ~400 kcal</h3><p>250g 0% Greek yoghurt + 40g oats + 100g berries + 10g chia + a little honey.</p><h3>Lunch — ~500 kcal</h3><p>150g chicken + 120–150g cooked rice + vegetables + 10g olive oil + salsa.</p><h3>Snack — ~200 kcal</h3><p>Apple + 150–200g skyr/Greek yoghurt.</p><h3>Dinner — ~500 kcal</h3><p>130–150g salmon + 250g potatoes + vegetables + 5g olive oil.</p></div>
-<div class="card"><h2>Add a meal</h2><input id="mealName" style="width:100%" placeholder="Meal / food"><div class="grid2"><div class="field"><span>Calories</span><input id="mealCal" type="number" min="0" placeholder="kcal"></div><div class="field"><span>Protein</span><input id="mealProt" type="number" min="0" step=".1" placeholder="g"></div></div><button class="primary full" onclick="addMeal()">Add meal</button></div>
-<div class="card"><h2>Today's meals</h2><div id="meals"></div><div class="row"><strong>Total</strong><strong><span id="mealTotalCal">0</span> kcal • <span id="mealTotalProt">0</span> g</strong></div></div>
+<div class="card"><h2>Food & ingredient tracker</h2>
+<p class="muted">Enter the amount eaten in grams. Calories and protein are calculated automatically from the food's values per 100 g.</p>
+<div class="field"><span>Ingredient / food</span><input id="foodName" style="width:100%" placeholder="e.g. chicken breast"></div>
+<div class="grid2">
+<div class="field"><span>Amount eaten (g)</span><input id="foodGrams" type="number" min="0" step="1" placeholder="150"></div>
+<div class="field"><span>Calories / 100 g</span><input id="foodKcal100" type="number" min="0" step=".1" placeholder="165"></div>
+<div class="field"><span>Protein / 100 g</span><input id="foodProt100" type="number" min="0" step=".1" placeholder="31"></div>
+</div>
+<div class="card" style="background:#f8fafc;margin:8px 0 0">
+<div class="row"><span>Calculated calories</span><strong id="foodCalcKcal">0 kcal</strong></div>
+<div class="row"><span>Calculated protein</span><strong id="foodCalcProt">0 g</strong></div>
+</div>
+<button class="primary full" style="margin-top:10px" onclick="addFood()">Add ingredient</button>
+<h3>Quick foods</h3>
+<div class="grid2">
+<button class="secondary" onclick="presetFood('Chicken breast',165,31)">Chicken breast</button>
+<button class="secondary" onclick="presetFood('Salmon',208,20)">Salmon</button>
+<button class="secondary" onclick="presetFood('Egg',143,12.6)">Egg</button>
+<button class="secondary" onclick="presetFood('0% Greek yoghurt',59,10.3)">0% Greek yoghurt</button>
+<button class="secondary" onclick="presetFood('Cooked rice',130,2.7)">Cooked rice</button>
+<button class="secondary" onclick="presetFood('Potato',77,2.0)">Potato</button>
+<button class="secondary" onclick="presetFood('Oats',389,16.9)">Oats</button>
+<button class="secondary" onclick="presetFood('Banana',89,1.1)">Banana</button>
+<button class="secondary" onclick="presetFood('Avocado',160,2)">Avocado</button>
+<button class="secondary" onclick="presetFood('Olive oil',884,0)">Olive oil</button>
+</div>
+</div>
+</div>
+<div class="card"><h2>Today's food log</h2><div id="meals"></div><div class="row"><strong>Total</strong><strong><span id="mealTotalCal">0</span> kcal • <span id="mealTotalProt">0</span> g</strong></div></div>
 </section>
 
 <section id="whoop" class="tab">
@@ -106,9 +133,14 @@ function toggle(id){let d=done();d=d.includes(id)?d.filter(x=>x!==id):[...d,id];
 function addWater(){let n=Number(localStorage.getItem("water_"+key())||0)+1;localStorage.setItem("water_"+key(),n);renderWater();renderHistory()}
 function renderWater(){let n=Number(localStorage.getItem("water_"+key())||0),ml=n*250;waterCount.textContent=n;waterMl.textContent=ml+" ml";waterBar.style.width=Math.min(100,ml/2500*100)+"%"}
 function meals(){return JSON.parse(localStorage.getItem("meals_"+key())||"[]")}
-function addMeal(){let name=mealName.value.trim(),cal=Number(mealCal.value),prot=Number(mealProt.value);if(!name||cal<0||prot<0)return;let a=meals();a.push({name,cal,prot});localStorage.setItem("meals_"+key(),JSON.stringify(a));mealName.value="";mealCal.value="";mealProt.value="";renderMeals();renderHistory()}
+
+function calcFood(){let g=Number(foodGrams.value)||0,k=Number(foodKcal100.value)||0,p=Number(foodProt100.value)||0;foodCalcKcal.textContent=Math.round(g*k/100)+" kcal";foodCalcProt.textContent=(g*p/100).toFixed(1)+" g"}
+function presetFood(n,k,p){foodName.value=n;foodKcal100.value=k;foodProt100.value=p;calcFood();foodGrams.focus()}
+["foodGrams","foodKcal100","foodProt100"].forEach(id=>document.getElementById(id)?.addEventListener("input",calcFood))
+function addFood(){let name=foodName.value.trim(),g=Number(foodGrams.value),k=Number(foodKcal100.value),p=Number(foodProt100.value);if(!name||g<=0||k<0||p<0)return;let a=meals();a.push({name,grams:g,kcal100:k,prot100:p,cal:g*k/100,prot:g*p/100});localStorage.setItem("meals_"+key(),JSON.stringify(a));foodName.value="";foodGrams.value="";foodKcal100.value="";foodProt100.value="";calcFood();renderMeals();renderHistory()}
+function addMeal(){let name=(document.getElementById("mealName")?.value||"").trim(),cal=Number(document.getElementById("mealCal")?.value),prot=Number(document.getElementById("mealProt")?.value);if(!name||cal<0||prot<0)return;let a=meals();a.push({name,cal,prot});localStorage.setItem("meals_"+key(),JSON.stringify(a));mealName.value="";mealCal.value="";mealProt.value="";renderMeals();renderHistory()}
 function removeMeal(i){let a=meals();a.splice(i,1);localStorage.setItem("meals_"+key(),JSON.stringify(a));renderMeals();renderHistory()}
-function renderMeals(){let a=meals(),c=a.reduce((x,m)=>x+m.cal,0),p=a.reduce((x,m)=>x+m.prot,0);mealsEl=document.getElementById("meals");mealsEl.innerHTML=a.length?a.map((m,i)=>`<div class="task"><span><strong>${m.name}</strong><small>${m.cal} kcal • ${m.prot} g protein</small></span><button class="secondary" onclick="removeMeal(${i})">✕</button></div>`).join(""):"<p class='muted'>No meals logged yet.</p>";mealTotalCal.textContent=c;mealTotalProt.textContent=Math.round(p);calToday.textContent=c;proteinToday.textContent=Math.round(p);let k=getTodayTarget();kcalToday.textContent=k;targetKcal.textContent=k.toLocaleString();calBar.style.width=Math.min(100,c/k*100)+"%";proteinBar.style.width=Math.min(100,p/130*100)+"%"}
+function renderMeals(){let a=meals(),c=a.reduce((x,m)=>x+m.cal,0),p=a.reduce((x,m)=>x+m.prot,0);mealsEl=document.getElementById("meals");mealsEl.innerHTML=a.length?a.map((m,i)=>`<div class="task"><span><strong>${m.name}</strong><small>${m.grams?m.grams+" g • ":""}${Math.round(m.cal)} kcal • ${Number(m.prot).toFixed(1)} g protein</small></span><button class="secondary" onclick="removeMeal(${i})">✕</button></div>`).join(""):"<p class='muted'>No food logged yet.</p>";mealTotalCal.textContent=c;mealTotalProt.textContent=Math.round(p);calToday.textContent=c;proteinToday.textContent=Math.round(p);let k=getTodayTarget();kcalToday.textContent=k;targetKcal.textContent=k.toLocaleString();calBar.style.width=Math.min(100,c/k*100)+"%";proteinBar.style.width=Math.min(100,p/130*100)+"%"}
 function getWhoop(d=new Date()){return JSON.parse(localStorage.getItem("whoop_"+key(d))||"null")}
 function saveWhoop(){let d={recovery:Number(wr.value),hrv:Number(wh.value),rhr:Number(whr.value),sleep:Number(ws.value),sleepHours:Number(wsh.value),debt:Number(wd.value),strain:Number(wstrain.value),calories:Number(wcal.value)};if(isNaN(d.recovery)||d.recovery<0||d.recovery>100)return;localStorage.setItem("whoop_"+key(),JSON.stringify(d));renderWhoop();whoopSaved.textContent="Saved today's WHOOP data.";renderHistory()}
 function getTodayTarget(){let d=getWhoop();if(!d)return 1650;let target=1650;if(d.recovery<=33)target+=100;if(d.recovery>=67&&d.strain>=14)target+=100;if(d.sleepHours&&d.sleepHours<6.5)target+=100;if(d.debt&&d.debt>=1.5)target+=100;return Math.round(target/50)*50}
