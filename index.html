@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#111827">
+<link rel="manifest" href="manifest.json">
+<title>60kg — 26 Week Cut</title>
+<style>
+:root{--bg:#f4f5f7;--card:#fff;--text:#111827;--muted:#6b7280;--accent:#111827;--line:#e5e7eb;--good:#15803d;--warn:#b45309}
+*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif}
+header{padding:calc(18px + env(safe-area-inset-top)) 18px 18px;background:var(--accent);color:#fff}
+h1{margin:0;font-size:30px;letter-spacing:-.8px}.sub{opacity:.75;margin-top:4px}
+nav{position:sticky;top:0;z-index:3;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);display:flex;border-bottom:1px solid var(--line)}
+nav button{flex:1;border:0;background:none;padding:14px 4px;font-weight:700;color:var(--muted)}nav button.active{color:var(--text);border-bottom:2px solid var(--text)}
+main{max-width:760px;margin:auto;padding:14px 14px 100px}.tab{display:none}.tab.active{display:block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;margin:12px 0;box-shadow:0 1px 2px #00000008}
+.hero{display:grid;grid-template-columns:1fr 1fr;gap:10px}.metric{padding:14px;border-radius:14px;background:#f8fafc}.metric b{display:block;font-size:23px}.metric span{font-size:12px;color:var(--muted)}
+h2{font-size:19px;margin:5px 0 10px}h3{font-size:16px;margin:14px 0 7px}
+.progress{height:10px;background:#e5e7eb;border-radius:99px;overflow:hidden}.bar{height:100%;background:#111827;border-radius:99px}
+.task{display:flex;gap:12px;align-items:center;padding:13px 0;border-bottom:1px solid var(--line)}.task:last-child{border-bottom:0}
+.task input{width:23px;height:23px;accent-color:#111827}.task strong{display:block}.task small{color:var(--muted)}
+.badge{display:inline-block;padding:5px 9px;border-radius:99px;background:#eef2ff;font-size:12px;font-weight:700}
+.row{display:flex;gap:8px;align-items:center;justify-content:space-between}.muted{color:var(--muted)}
+button.primary{width:100%;border:0;border-radius:14px;padding:14px;background:#111827;color:white;font-weight:800;font-size:16px}
+input[type=number]{width:120px;padding:10px;border:1px solid var(--line);border-radius:10px;font-size:16px}
+.workout{border-left:4px solid #111827;padding-left:12px;margin:12px 0}.exercise{padding:8px 0;border-bottom:1px solid var(--line)}
+.notice{background:#fff7ed;border-color:#fed7aa}.good{background:#f0fdf4;border-color:#bbf7d0}
+ul{padding-left:21px}li{margin:7px 0}
+footer{text-align:center;color:var(--muted);font-size:12px;margin-top:20px}
+canvas{width:100%;height:220px;background:#fafafa;border-radius:14px}
+@media(min-width:700px){main{padding-top:24px}.hero{grid-template-columns:repeat(4,1fr)}}
+</style>
+</head>
+<body>
+<header><h1>60 kg</h1><div class="sub">26-week fat-loss plan • WHOOP-informed</div></header>
+<nav>
+<button class="active" onclick="showTab('today',this)">Today</button>
+<button onclick="showTab('train',this)">Train</button>
+<button onclick="showTab('food',this)">Food</button>
+<button onclick="showTab('progress',this)">Progress</button>
+</nav>
+<main>
+<section id="today" class="tab active">
+<div class="card hero">
+<div class="metric"><b>75 → 60</b><span>kg goal</span></div>
+<div class="metric"><b>0.58</b><span>kg/week average</span></div>
+<div class="metric"><b>1,650</b><span>starting kcal/day</span></div>
+<div class="metric"><b>120–140g</b><span>protein/day</span></div>
+</div>
+
+<div class="card">
+<div class="row"><h2>Today's checklist</h2><span id="count" class="badge">0/8</span></div>
+<div class="progress"><div id="bar" class="bar" style="width:0%"></div></div>
+<div id="tasks"></div>
+</div>
+
+<div class="card">
+<h2>WHOOP-informed readiness</h2>
+<p id="whoopAdvice" class="muted"></p>
+<div class="row"><span>Recovery</span><strong>59%</strong></div>
+<div class="row"><span>7-day sleep / debt context</span><strong>~7h 50m / low</strong></div>
+<p class="muted">Your export shows a typical recovery around 68%, HRV around 70 ms and RHR around 53 bpm. Use your current WHOOP Recovery rather than chasing a fixed workout every day.</p>
+</div>
+
+<div class="card good">
+<h2>Non-negotiables</h2>
+<ul>
+<li>3 strength sessions/week</li><li>2 cardio sessions/week</li><li>8,000–10,000 steps/day</li><li>120–140 g protein/day</li><li>7–9 h sleep opportunity</li>
+</ul>
+</div>
+</section>
+
+<section id="train" class="tab">
+<div class="card">
+<h2>Weekly training</h2>
+<p class="muted">Use your WHOOP Recovery to choose the intensity, not whether you move.</p>
+<div class="workout"><h3>Monday — Strength A</h3>
+<div class="exercise">Leg press — 3×10–12</div><div class="exercise">Romanian deadlift — 3×10</div><div class="exercise">Lat pulldown — 3×10–12</div><div class="exercise">Chest press — 3×10–12</div><div class="exercise">Seated cable row — 3×10–12</div><div class="exercise">Hip thrust — 3×10–12</div><div class="exercise">Plank — 3×30–45 sec</div></div>
+<div class="workout"><h3>Tuesday — Zone 2</h3><p>35–45 min incline walk, bike, elliptical or swim. Conversational pace.</p></div>
+<div class="workout"><h3>Wednesday — Strength B</h3>
+<div class="exercise">Hack/goblet squat — 3×10–12</div><div class="exercise">DB Romanian deadlift — 3×10</div><div class="exercise">Assisted pull-up/lat pulldown — 3×8–12</div><div class="exercise">DB shoulder press — 3×10</div><div class="exercise">Cable row — 3×10–12</div><div class="exercise">Bulgarian split squat — 2×8–10/leg</div><div class="exercise">Dead bug — 3×10/side</div></div>
+<div class="workout"><h3>Thursday — Recovery</h3><p>8,000–10,000 easy steps. Optional 20–30 min gentle Pilates/yoga.</p></div>
+<div class="workout"><h3>Friday — Strength C</h3>
+<div class="exercise">Leg press — 3×12</div><div class="exercise">Hip thrust — 3×10–12</div><div class="exercise">Chest press — 3×10</div><div class="exercise">Lat pulldown — 3×10</div><div class="exercise">Walking lunges — 2×10/leg</div><div class="exercise">Lateral raises — 3×12–15</div><div class="exercise">Cable crunch — 3×12–15</div></div>
+<div class="workout"><h3>Saturday — Wellhub class/cardio</h3><p>40–60 min: cycling, swimming, Pilates, dance, padel or a moderate cardio class.</p></div>
+<div class="workout"><h3>Sunday — Rest</h3><p>Easy walk + mobility. No need to “burn off” food.</p></div>
+</div>
+<div class="card notice"><h2>WHOOP intensity rule</h2>
+<ul><li><b>Green / high recovery:</b> do planned session; normal loads.</li><li><b>Yellow / middling recovery:</b> keep the session but reduce volume ~20% or choose Zone 2.</li><li><b>Red / poor recovery:</b> walk + mobility; skip HIIT and heavy lifting. Resume when recovery improves.</li></ul>
+<p class="muted">This is a coaching heuristic, not a medical rule. Your own baseline and symptoms matter more than a single score.</p></div>
+</section>
+
+<section id="food" class="tab">
+<div class="card">
+<h2>Starting nutrition target</h2>
+<p><b>~1,650 kcal/day • 120–140 g protein</b></p>
+<p class="muted">Adjust from your 2–3 week weight trend. WHOOP calorie burn is useful context, but don't automatically “eat back” every calorie it reports.</p>
+</div>
+<div class="card">
+<h2>Example day</h2>
+<h3>Breakfast — ~400 kcal</h3><p>250g 0% Greek yoghurt + 40g oats + 100g berries + 10g chia + a little honey.</p>
+<h3>Lunch — ~500 kcal</h3><p>150g chicken breast + 120–150g cooked rice + large serving of vegetables + 10g olive oil + salsa.</p>
+<h3>Snack — ~200 kcal</h3><p>Apple + 150–200g skyr/Greek yoghurt.</p>
+<h3>Dinner — ~500 kcal</h3><p>130–150g salmon + 250g potatoes + large salad/vegetables + 5g olive oil.</p>
+<h3>Flexible calories</h3><p>Keep ~100–150 kcal available for chocolate, a small dessert or something social.</p>
+</div>
+<div class="card"><h2>Easy swaps</h2><ul><li>Chicken → turkey, prawns, tuna, lean beef, tofu</li><li>Rice → potatoes, couscous, pasta, wholegrain bread</li><li>Greek yoghurt → skyr, cottage cheese, high-protein yoghurt</li><li>Salmon → white fish + a measured olive-oil portion</li></ul></div>
+</section>
+
+<section id="progress" class="tab">
+<div class="card">
+<h2>Weigh-in</h2>
+<p class="muted">Use the same conditions where possible: morning, after bathroom, before food.</p>
+<div class="row"><input id="weight" type="number" step="0.1" placeholder="kg"><button class="primary" style="width:auto;padding:10px 14px" onclick="saveWeight()">Save</button></div>
+<p id="weightMsg" class="muted"></p>
+</div>
+<div class="card">
+<h2>Weight trend</h2><canvas id="chart" width="700" height="260"></canvas>
+</div>
+<div class="card">
+<h2>Milestones</h2>
+<ul><li>~72.5 kg — establish routine</li><li>~70 kg — 5 kg down</li><li>~67.5 kg — halfway to goal</li><li>~65 kg — 10 kg down</li><li>~62.5 kg — final stretch</li><li><b>60 kg — goal</b></li></ul>
+</div>
+<div class="card notice"><h2>Adjustment rule</h2><p>If your 14–21 day trend is falling ~0.4–0.8 kg/week, keep the plan. If adherence is high but there is no meaningful loss for 2–3 weeks, reduce by ~100–150 kcal/day or add ~1,500–2,000 steps/day. If loss is consistently >0.9 kg/week with poor energy or training, increase intake slightly.</p></div>
+</section>
+<footer>Built for your 75 → 60 kg goal. Your WHOOP export informed the recovery/sleep strategy.</footer>
+</main>
+<script>
+const tasks=[
+["steps","8,000–10,000 steps","Movement"],
+["protein","120–140g protein","Nutrition"],
+["calories","Stay near calorie target","Nutrition"],
+["water","2–2.5 L water","Recovery"],
+["sleep","7–9 h sleep opportunity","Recovery"],
+["strength","Strength session if scheduled","Training"],
+["cardio","Cardio if scheduled","Training"],
+["mealprep","Plan tomorrow's meals","Nutrition"]
+];
+function key(){return new Date().toISOString().slice(0,10)}
+function load(){return JSON.parse(localStorage.getItem("done_"+key())||"[]")}
+function render(){
+ let done=load(), el=document.getElementById("tasks");
+ el.innerHTML=tasks.map(t=>`<label class="task"><input type="checkbox" ${done.includes(t[0])?"checked":""} onchange="toggle('${t[0]}')"><span><strong>${t[1]}</strong><small>${t[2]}</small></span></label>`).join("");
+ let n=done.length;document.getElementById("count").textContent=n+"/8";document.getElementById("bar").style.width=(n/8*100)+"%";
+}
+function toggle(id){let d=load();d=d.includes(id)?d.filter(x=>x!==id):[...d,id];localStorage.setItem("done_"+key(),JSON.stringify(d));render()}
+function showTab(id,btn){document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));document.getElementById(id).classList.add("active");document.querySelectorAll("nav button").forEach(x=>x.classList.remove("active"));btn.classList.add("active");if(id==="progress")draw()}
+function saveWeight(){let v=parseFloat(document.getElementById("weight").value);if(!v||v<40||v>150)return;let a=JSON.parse(localStorage.getItem("weights")||"[]");a.push({date:new Date().toISOString().slice(0,10),value:v});localStorage.setItem("weights",JSON.stringify(a));document.getElementById("weight").value="";document.getElementById("weightMsg").textContent="Saved "+v.toFixed(1)+" kg.";draw()}
+function draw(){let c=document.getElementById("chart"),ctx=c.getContext("2d"),a=JSON.parse(localStorage.getItem("weights")||"[]");ctx.clearRect(0,0,c.width,c.height);ctx.font="14px -apple-system,BlinkMacSystemFont,sans-serif";ctx.fillStyle="#6b7280";ctx.fillText("75 kg",10,25);ctx.fillText("60 kg",10,235);ctx.strokeStyle="#e5e7eb";ctx.beginPath();ctx.moveTo(55,20);ctx.lineTo(55,235);ctx.lineTo(680,235);ctx.stroke();if(a.length<1){ctx.fillText("Add your first weigh-in to see the trend.",80,130);return}let vals=a.map(x=>x.value),min=Math.min(60,...vals)-1,max=Math.max(75,...vals)+1;ctx.strokeStyle="#111827";ctx.lineWidth=3;ctx.beginPath();a.forEach((p,i)=>{let x=65+i*(610/Math.max(1,a.length-1)),y=220-(p.value-min)/(max-min)*180;i?ctx.lineTo(x,y):ctx.moveTo(x,y)});ctx.stroke();a.forEach((p,i)=>{let x=65+i*(610/Math.max(1,a.length-1)),y=220-(p.value-min)/(max-min)*180;ctx.fillStyle="#111827";ctx.beginPath();ctx.arc(x,y,4,0,Math.PI*2);ctx.fill()})}
+render();
+</script>
+</body>
+</html>
