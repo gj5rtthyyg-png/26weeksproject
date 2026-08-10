@@ -7,148 +7,116 @@
 <link rel="manifest" href="manifest.json">
 <title>60kg — 26 Week Cut</title>
 <style>
-:root{--bg:#f4f5f7;--card:#fff;--text:#111827;--muted:#6b7280;--accent:#111827;--line:#e5e7eb;--good:#15803d;--warn:#b45309}
-*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif}
-header{padding:calc(18px + env(safe-area-inset-top)) 18px 18px;background:var(--accent);color:#fff}
-h1{margin:0;font-size:30px;letter-spacing:-.8px}.sub{opacity:.75;margin-top:4px}
-nav{position:sticky;top:0;z-index:3;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);display:flex;border-bottom:1px solid var(--line)}
-nav button{flex:1;border:0;background:none;padding:14px 4px;font-weight:700;color:var(--muted)}nav button.active{color:var(--text);border-bottom:2px solid var(--text)}
-main{max-width:760px;margin:auto;padding:14px 14px 100px}.tab{display:none}.tab.active{display:block}
-.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;margin:12px 0;box-shadow:0 1px 2px #00000008}
-.hero{display:grid;grid-template-columns:1fr 1fr;gap:10px}.metric{padding:14px;border-radius:14px;background:#f8fafc}.metric b{display:block;font-size:23px}.metric span{font-size:12px;color:var(--muted)}
-h2{font-size:19px;margin:5px 0 10px}h3{font-size:16px;margin:14px 0 7px}
+:root{--bg:#f4f5f7;--card:#fff;--text:#111827;--muted:#6b7280;--line:#e5e7eb;--good:#15803d;--warn:#b45309}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif}
+header{padding:calc(18px + env(safe-area-inset-top)) 18px 18px;background:#111827;color:#fff}h1{margin:0;font-size:30px}.sub{opacity:.75;margin-top:4px}
+nav{position:sticky;top:0;z-index:3;background:rgba(255,255,255,.96);backdrop-filter:blur(14px);display:flex;overflow-x:auto;border-bottom:1px solid var(--line)}
+nav button{flex:1;min-width:75px;border:0;background:none;padding:14px 5px;font-weight:700;color:var(--muted)}nav button.active{color:#111827;border-bottom:2px solid #111827}
+main{max-width:820px;margin:auto;padding:14px 14px 100px}.tab{display:none}.tab.active{display:block}.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px;margin:12px 0;box-shadow:0 1px 2px #00000008}
+.hero{display:grid;grid-template-columns:1fr 1fr;gap:10px}.metric{padding:14px;border-radius:14px;background:#f8fafc}.metric b{display:block;font-size:22px}.metric span{font-size:12px;color:var(--muted)}
+h2{font-size:19px;margin:5px 0 10px}h3{font-size:16px;margin:14px 0 7px}.row{display:flex;gap:10px;align-items:center;justify-content:space-between}.muted{color:var(--muted)}
 .progress{height:10px;background:#e5e7eb;border-radius:99px;overflow:hidden}.bar{height:100%;background:#111827;border-radius:99px}
-.task{display:flex;gap:12px;align-items:center;padding:13px 0;border-bottom:1px solid var(--line)}.task:last-child{border-bottom:0}
-.task input{width:23px;height:23px;accent-color:#111827}.task strong{display:block}.task small{color:var(--muted)}
-.badge{display:inline-block;padding:5px 9px;border-radius:99px;background:#eef2ff;font-size:12px;font-weight:700}
-.row{display:flex;gap:8px;align-items:center;justify-content:space-between}.muted{color:var(--muted)}
-button.primary{width:100%;border:0;border-radius:14px;padding:14px;background:#111827;color:white;font-weight:800;font-size:16px}
-input[type=number]{width:120px;padding:10px;border:1px solid var(--line);border-radius:10px;font-size:16px}
-.workout{border-left:4px solid #111827;padding-left:12px;margin:12px 0}.exercise{padding:8px 0;border-bottom:1px solid var(--line)}
-.notice{background:#fff7ed;border-color:#fed7aa}.good{background:#f0fdf4;border-color:#bbf7d0}
-ul{padding-left:21px}li{margin:7px 0}
-footer{text-align:center;color:var(--muted);font-size:12px;margin-top:20px}
-canvas{width:100%;height:220px;background:#fafafa;border-radius:14px}
-@media(min-width:700px){main{padding-top:24px}.hero{grid-template-columns:repeat(4,1fr)}}
+.task{display:flex;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}.task:last-child{border-bottom:0}.task input{width:23px;height:23px;accent-color:#111827}
+.task strong{display:block}.task small{color:var(--muted)}.badge{display:inline-block;padding:5px 9px;border-radius:99px;background:#eef2ff;font-size:12px;font-weight:700}
+button.primary{border:0;border-radius:14px;padding:13px 16px;background:#111827;color:white;font-weight:800;font-size:15px}.full{width:100%}
+button.secondary{border:1px solid var(--line);background:#fff;border-radius:10px;padding:8px 11px;font-weight:700}
+input,select{padding:10px;border:1px solid var(--line);border-radius:10px;font-size:16px;background:#fff;max-width:100%}
+label{font-weight:650;font-size:14px}.field{margin:10px 0}.field span{display:block;color:var(--muted);font-size:12px;margin-bottom:5px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.workout{border-left:4px solid #111827;padding-left:12px;margin:12px 0}.exercise{padding:8px 0;border-bottom:1px solid var(--line)}
+.notice{background:#fff7ed;border-color:#fed7aa}.good{background:#f0fdf4;border-color:#bbf7d0}.red{background:#fef2f2;border-color:#fecaca}
+table{width:100%;border-collapse:collapse;font-size:12px}th,td{padding:9px 5px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap}th{font-size:11px;color:var(--muted)}
+canvas{width:100%;height:230px;background:#fafafa;border-radius:14px}footer{text-align:center;color:var(--muted);font-size:12px;margin-top:20px}
+@media(min-width:700px){.hero{grid-template-columns:repeat(4,1fr)}}
 </style>
 </head>
 <body>
-<header><h1>60 kg</h1><div class="sub">26-week fat-loss plan • WHOOP-informed</div></header>
+<header><h1>60 kg</h1><div class="sub">26-week plan • daily WHOOP + nutrition + hydration</div></header>
 <nav>
 <button class="active" onclick="showTab('today',this)">Today</button>
 <button onclick="showTab('train',this)">Train</button>
 <button onclick="showTab('food',this)">Food</button>
+<button onclick="showTab('whoop',this)">WHOOP</button>
 <button onclick="showTab('progress',this)">Progress</button>
 </nav>
 <main>
+
 <section id="today" class="tab active">
 <div class="card hero">
-<div class="metric"><b>75 → 60</b><span>kg goal</span></div>
-<div class="metric"><b>0.58</b><span>kg/week average</span></div>
-<div class="metric"><b>1,650</b><span>starting kcal/day</span></div>
-<div class="metric"><b>120–140g</b><span>protein/day</span></div>
+<div class="metric"><b>75 → 60</b><span>kg goal</span></div><div class="metric"><b id="targetKcal">1,650</b><span>today kcal target</span></div><div class="metric"><b>120–140g</b><span>protein target</span></div><div class="metric"><b id="workoutLabel">Check WHOOP</b><span>today's intensity</span></div>
 </div>
-
-<div class="card">
-<div class="row"><h2>Today's checklist</h2><span id="count" class="badge">0/8</span></div>
-<div class="progress"><div id="bar" class="bar" style="width:0%"></div></div>
-<div id="tasks"></div>
-</div>
-
-<div class="card">
-<h2>WHOOP-informed readiness</h2>
-<p id="whoopAdvice" class="muted"></p>
-<div class="row"><span>Recovery</span><strong>59%</strong></div>
-<div class="row"><span>7-day sleep / debt context</span><strong>~7h 50m / low</strong></div>
-<p class="muted">Your export shows a typical recovery around 68%, HRV around 70 ms and RHR around 53 bpm. Use your current WHOOP Recovery rather than chasing a fixed workout every day.</p>
-</div>
-
-<div class="card good">
-<h2>Non-negotiables</h2>
-<ul>
-<li>3 strength sessions/week</li><li>2 cardio sessions/week</li><li>8,000–10,000 steps/day</li><li>120–140 g protein/day</li><li>7–9 h sleep opportunity</li>
-</ul>
-</div>
+<div class="card"><div class="row"><h2>Today's checklist</h2><span id="count" class="badge">0/8</span></div><div class="progress"><div id="bar" class="bar" style="width:0%"></div></div><div id="tasks"></div></div>
+<div class="card"><h2>WHOOP recommendation</h2><p id="whoopAdvice" class="muted">Enter today's WHOOP data to personalise today's training.</p>
+<div class="grid2"><div>Recovery<br><b id="todayRecovery">—</b></div><div>HRV<br><b id="todayHRV">—</b></div><div>RHR<br><b id="todayRHR">—</b></div><div>Sleep<br><b id="todaySleep">—</b></div><div>Sleep debt<br><b id="todayDebt">—</b></div><div>Strain<br><b id="todayStrain">—</b></div></div></div>
+<div class="card"><h2>Water</h2><div class="row"><strong><span id="waterCount">0</span> cups</strong><span id="waterMl" class="muted">0 ml</span></div><div class="progress"><div id="waterBar" class="bar" style="width:0%"></div></div><button class="primary full" style="margin-top:10px" onclick="addWater()">＋ Add 250 ml cup</button></div>
+<div class="card"><h2>Nutrition</h2><div class="row"><span>Calories</span><strong><span id="calToday">0</span> / <span id="kcalToday">1,650</span></strong></div><div class="progress"><div id="calBar" class="bar" style="width:0%"></div></div><div class="row" style="margin-top:10px"><span>Protein</span><strong><span id="proteinToday">0</span> / 130 g</strong></div><div class="progress"><div id="proteinBar" class="bar" style="width:0%"></div></div></div>
 </section>
 
 <section id="train" class="tab">
-<div class="card">
-<h2>Weekly training</h2>
-<p class="muted">Use your WHOOP Recovery to choose the intensity, not whether you move.</p>
-<div class="workout"><h3>Monday — Strength A</h3>
-<div class="exercise">Leg press — 3×10–12</div><div class="exercise">Romanian deadlift — 3×10</div><div class="exercise">Lat pulldown — 3×10–12</div><div class="exercise">Chest press — 3×10–12</div><div class="exercise">Seated cable row — 3×10–12</div><div class="exercise">Hip thrust — 3×10–12</div><div class="exercise">Plank — 3×30–45 sec</div></div>
-<div class="workout"><h3>Tuesday — Zone 2</h3><p>35–45 min incline walk, bike, elliptical or swim. Conversational pace.</p></div>
-<div class="workout"><h3>Wednesday — Strength B</h3>
-<div class="exercise">Hack/goblet squat — 3×10–12</div><div class="exercise">DB Romanian deadlift — 3×10</div><div class="exercise">Assisted pull-up/lat pulldown — 3×8–12</div><div class="exercise">DB shoulder press — 3×10</div><div class="exercise">Cable row — 3×10–12</div><div class="exercise">Bulgarian split squat — 2×8–10/leg</div><div class="exercise">Dead bug — 3×10/side</div></div>
-<div class="workout"><h3>Thursday — Recovery</h3><p>8,000–10,000 easy steps. Optional 20–30 min gentle Pilates/yoga.</p></div>
-<div class="workout"><h3>Friday — Strength C</h3>
-<div class="exercise">Leg press — 3×12</div><div class="exercise">Hip thrust — 3×10–12</div><div class="exercise">Chest press — 3×10</div><div class="exercise">Lat pulldown — 3×10</div><div class="exercise">Walking lunges — 2×10/leg</div><div class="exercise">Lateral raises — 3×12–15</div><div class="exercise">Cable crunch — 3×12–15</div></div>
-<div class="workout"><h3>Saturday — Wellhub class/cardio</h3><p>40–60 min: cycling, swimming, Pilates, dance, padel or a moderate cardio class.</p></div>
-<div class="workout"><h3>Sunday — Rest</h3><p>Easy walk + mobility. No need to “burn off” food.</p></div>
-</div>
-<div class="card notice"><h2>WHOOP intensity rule</h2>
-<ul><li><b>Green / high recovery:</b> do planned session; normal loads.</li><li><b>Yellow / middling recovery:</b> keep the session but reduce volume ~20% or choose Zone 2.</li><li><b>Red / poor recovery:</b> walk + mobility; skip HIIT and heavy lifting. Resume when recovery improves.</li></ul>
-<p class="muted">This is a coaching heuristic, not a medical rule. Your own baseline and symptoms matter more than a single score.</p></div>
+<div class="card"><h2>Weekly training</h2><p class="muted">The schedule stays stable; WHOOP adjusts intensity and recovery.</p>
+<div class="workout"><h3>Monday — Strength A</h3><div class="exercise">Leg press — 3×10–12</div><div class="exercise">Romanian deadlift — 3×10</div><div class="exercise">Lat pulldown — 3×10–12</div><div class="exercise">Chest press — 3×10–12</div><div class="exercise">Seated cable row — 3×10–12</div><div class="exercise">Hip thrust — 3×10–12</div><div class="exercise">Plank — 3×30–45 sec</div></div>
+<div class="workout"><h3>Tuesday — Zone 2</h3><p>35–45 min incline walk, bike, elliptical or swim.</p></div>
+<div class="workout"><h3>Wednesday — Strength B</h3><div class="exercise">Hack/goblet squat — 3×10–12</div><div class="exercise">DB Romanian deadlift — 3×10</div><div class="exercise">Lat pulldown/assisted pull-up — 3×8–12</div><div class="exercise">DB shoulder press — 3×10</div><div class="exercise">Cable row — 3×10–12</div><div class="exercise">Bulgarian split squat — 2×8–10/leg</div><div class="exercise">Dead bug — 3×10/side</div></div>
+<div class="workout"><h3>Thursday — Recovery</h3><p>8,000–10,000 easy steps + optional gentle Pilates/yoga.</p></div>
+<div class="workout"><h3>Friday — Strength C</h3><div class="exercise">Leg press — 3×12</div><div class="exercise">Hip thrust — 3×10–12</div><div class="exercise">Chest press — 3×10</div><div class="exercise">Lat pulldown — 3×10</div><div class="exercise">Walking lunges — 2×10/leg</div><div class="exercise">Lateral raises — 3×12–15</div><div class="exercise">Cable crunch — 3×12–15</div></div>
+<div class="workout"><h3>Saturday — Wellhub</h3><p>40–60 min cycling, swimming, Pilates, dance, padel or moderate cardio.</p></div>
+<div class="workout"><h3>Sunday — Rest</h3><p>Easy walk + mobility.</p></div></div>
+<div class="card notice"><h2>WHOOP intensity rules</h2><ul><li><b>Recovery ≥67%:</b> planned training, normal loads.</li><li><b>34–66%:</b> reduce volume/intensity ~20% if needed.</li><li><b>≤33%:</b> walking/mobility or easy Zone 2; no HIIT/heavy lifting.</li></ul></div>
 </section>
 
 <section id="food" class="tab">
-<div class="card">
-<h2>Starting nutrition target</h2>
-<p><b>~1,650 kcal/day • 120–140 g protein</b></p>
-<p class="muted">Adjust from your 2–3 week weight trend. WHOOP calorie burn is useful context, but don't automatically “eat back” every calorie it reports.</p>
+<div class="card"><h2>Starting nutrition</h2><p><b>~1,650 kcal/day • 120–140 g protein</b></p><p class="muted">The daily calorie target is adjusted from your WHOOP context and your weight trend. Do not automatically eat back all WHOOP calories burned.</p></div>
+<div class="card"><h2>Example day</h2><h3>Breakfast — ~400 kcal</h3><p>250g 0% Greek yoghurt + 40g oats + 100g berries + 10g chia + a little honey.</p><h3>Lunch — ~500 kcal</h3><p>150g chicken + 120–150g cooked rice + vegetables + 10g olive oil + salsa.</p><h3>Snack — ~200 kcal</h3><p>Apple + 150–200g skyr/Greek yoghurt.</p><h3>Dinner — ~500 kcal</h3><p>130–150g salmon + 250g potatoes + vegetables + 5g olive oil.</p></div>
+<div class="card"><h2>Add a meal</h2><input id="mealName" style="width:100%" placeholder="Meal / food"><div class="grid2"><div class="field"><span>Calories</span><input id="mealCal" type="number" min="0" placeholder="kcal"></div><div class="field"><span>Protein</span><input id="mealProt" type="number" min="0" step=".1" placeholder="g"></div></div><button class="primary full" onclick="addMeal()">Add meal</button></div>
+<div class="card"><h2>Today's meals</h2><div id="meals"></div><div class="row"><strong>Total</strong><strong><span id="mealTotalCal">0</span> kcal • <span id="mealTotalProt">0</span> g</strong></div></div>
+</section>
+
+<section id="whoop" class="tab">
+<div class="card"><h2>Daily WHOOP input</h2><p class="muted">Enter the values you see in WHOOP each morning. Every date gets its own saved record.</p>
+<div class="grid2">
+<div class="field"><span>Recovery %</span><input id="wr" type="number" min="0" max="100" placeholder="72"></div>
+<div class="field"><span>HRV ms</span><input id="wh" type="number" min="0" step=".1" placeholder="68"></div>
+<div class="field"><span>Resting HR bpm</span><input id="whr" type="number" min="20" max="120" placeholder="53"></div>
+<div class="field"><span>Sleep performance %</span><input id="ws" type="number" min="0" max="100" placeholder="84"></div>
+<div class="field"><span>Sleep duration h</span><input id="wsh" type="number" min="0" max="24" step=".1" placeholder="7.8"></div>
+<div class="field"><span>Sleep debt h</span><input id="wd" type="number" min="0" max="24" step=".1" placeholder="0.5"></div>
+<div class="field"><span>Day Strain</span><input id="wstrain" type="number" min="0" max="21" step=".1" placeholder="10"></div>
+<div class="field"><span>WHOOP calories burned</span><input id="wcal" type="number" min="0" placeholder="1800"></div>
 </div>
-<div class="card">
-<h2>Example day</h2>
-<h3>Breakfast — ~400 kcal</h3><p>250g 0% Greek yoghurt + 40g oats + 100g berries + 10g chia + a little honey.</p>
-<h3>Lunch — ~500 kcal</h3><p>150g chicken breast + 120–150g cooked rice + large serving of vegetables + 10g olive oil + salsa.</p>
-<h3>Snack — ~200 kcal</h3><p>Apple + 150–200g skyr/Greek yoghurt.</p>
-<h3>Dinner — ~500 kcal</h3><p>130–150g salmon + 250g potatoes + large salad/vegetables + 5g olive oil.</p>
-<h3>Flexible calories</h3><p>Keep ~100–150 kcal available for chocolate, a small dessert or something social.</p>
-</div>
-<div class="card"><h2>Easy swaps</h2><ul><li>Chicken → turkey, prawns, tuna, lean beef, tofu</li><li>Rice → potatoes, couscous, pasta, wholegrain bread</li><li>Greek yoghurt → skyr, cottage cheese, high-protein yoghurt</li><li>Salmon → white fish + a measured olive-oil portion</li></ul></div>
+<button class="primary full" onclick="saveWhoop()">Save today's WHOOP</button><p id="whoopSaved" class="muted"></p></div>
+<div class="card"><h2>Daily recommendation</h2><p id="whoopDetailedAdvice" class="muted">Save your data to calculate today's recommendation.</p></div>
 </section>
 
 <section id="progress" class="tab">
-<div class="card">
-<h2>Weigh-in</h2>
-<p class="muted">Use the same conditions where possible: morning, after bathroom, before food.</p>
-<div class="row"><input id="weight" type="number" step="0.1" placeholder="kg"><button class="primary" style="width:auto;padding:10px 14px" onclick="saveWeight()">Save</button></div>
-<p id="weightMsg" class="muted"></p>
-</div>
-<div class="card">
-<h2>Weight trend</h2><canvas id="chart" width="700" height="260"></canvas>
-</div>
-<div class="card">
-<h2>Milestones</h2>
-<ul><li>~72.5 kg — establish routine</li><li>~70 kg — 5 kg down</li><li>~67.5 kg — halfway to goal</li><li>~65 kg — 10 kg down</li><li>~62.5 kg — final stretch</li><li><b>60 kg — goal</b></li></ul>
-</div>
-<div class="card notice"><h2>Adjustment rule</h2><p>If your 14–21 day trend is falling ~0.4–0.8 kg/week, keep the plan. If adherence is high but there is no meaningful loss for 2–3 weeks, reduce by ~100–150 kcal/day or add ~1,500–2,000 steps/day. If loss is consistently >0.9 kg/week with poor energy or training, increase intake slightly.</p></div>
+<div class="card"><h2>Weight</h2><div class="grid2"><div class="field"><span>Today's weight (kg)</span><input id="weight" type="number" step=".1" placeholder="75.0"></div><div class="field"><span>Waist (optional, cm)</span><input id="waist" type="number" step=".1" placeholder="—"></div></div><button class="primary full" onclick="saveWeight()">Save today's measurements</button></div>
+<div class="card"><h2>Weight trend</h2><canvas id="chart" width="700" height="260"></canvas></div>
+<div class="card"><h2>Daily history</h2><div style="overflow-x:auto"><table><thead><tr><th>Date</th><th>Weight</th><th>Recovery</th><th>HRV</th><th>RHR</th><th>Sleep</th><th>Debt</th><th>Strain</th><th>WHOOP kcal</th><th>Food kcal</th><th>Protein</th><th>Water</th></tr></thead><tbody id="history"></tbody></table></div></div>
+<div class="card"><h2>Weekly review</h2><div id="weeklyReview" class="muted"></div></div>
+<div class="card notice"><h2>Adjustment rule</h2><p>Use the 14–21 day weight trend. If loss is ~0.4–0.8 kg/week, keep the plan. If there is no meaningful loss for 2–3 weeks with good adherence, reduce ~100–150 kcal/day or add ~1,500–2,000 steps/day. If loss is consistently >0.9 kg/week with poor energy/training, increase intake slightly.</p></div>
 </section>
-<footer>Built for your 75 → 60 kg goal. Your WHOOP export informed the recovery/sleep strategy.</footer>
+<footer>60 kg • 26 weeks • local daily log</footer>
 </main>
+
 <script>
-const tasks=[
-["steps","8,000–10,000 steps","Movement"],
-["protein","120–140g protein","Nutrition"],
-["calories","Stay near calorie target","Nutrition"],
-["water","2–2.5 L water","Recovery"],
-["sleep","7–9 h sleep opportunity","Recovery"],
-["strength","Strength session if scheduled","Training"],
-["cardio","Cardio if scheduled","Training"],
-["mealprep","Plan tomorrow's meals","Nutrition"]
-];
-function key(){return new Date().toISOString().slice(0,10)}
-function load(){return JSON.parse(localStorage.getItem("done_"+key())||"[]")}
-function render(){
- let done=load(), el=document.getElementById("tasks");
- el.innerHTML=tasks.map(t=>`<label class="task"><input type="checkbox" ${done.includes(t[0])?"checked":""} onchange="toggle('${t[0]}')"><span><strong>${t[1]}</strong><small>${t[2]}</small></span></label>`).join("");
- let n=done.length;document.getElementById("count").textContent=n+"/8";document.getElementById("bar").style.width=(n/8*100)+"%";
-}
-function toggle(id){let d=load();d=d.includes(id)?d.filter(x=>x!==id):[...d,id];localStorage.setItem("done_"+key(),JSON.stringify(d));render()}
-function showTab(id,btn){document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));document.getElementById(id).classList.add("active");document.querySelectorAll("nav button").forEach(x=>x.classList.remove("active"));btn.classList.add("active");if(id==="progress")draw()}
-function saveWeight(){let v=parseFloat(document.getElementById("weight").value);if(!v||v<40||v>150)return;let a=JSON.parse(localStorage.getItem("weights")||"[]");a.push({date:new Date().toISOString().slice(0,10),value:v});localStorage.setItem("weights",JSON.stringify(a));document.getElementById("weight").value="";document.getElementById("weightMsg").textContent="Saved "+v.toFixed(1)+" kg.";draw()}
-function draw(){let c=document.getElementById("chart"),ctx=c.getContext("2d"),a=JSON.parse(localStorage.getItem("weights")||"[]");ctx.clearRect(0,0,c.width,c.height);ctx.font="14px -apple-system,BlinkMacSystemFont,sans-serif";ctx.fillStyle="#6b7280";ctx.fillText("75 kg",10,25);ctx.fillText("60 kg",10,235);ctx.strokeStyle="#e5e7eb";ctx.beginPath();ctx.moveTo(55,20);ctx.lineTo(55,235);ctx.lineTo(680,235);ctx.stroke();if(a.length<1){ctx.fillText("Add your first weigh-in to see the trend.",80,130);return}let vals=a.map(x=>x.value),min=Math.min(60,...vals)-1,max=Math.max(75,...vals)+1;ctx.strokeStyle="#111827";ctx.lineWidth=3;ctx.beginPath();a.forEach((p,i)=>{let x=65+i*(610/Math.max(1,a.length-1)),y=220-(p.value-min)/(max-min)*180;i?ctx.lineTo(x,y):ctx.moveTo(x,y)});ctx.stroke();a.forEach((p,i)=>{let x=65+i*(610/Math.max(1,a.length-1)),y=220-(p.value-min)/(max-min)*180;ctx.fillStyle="#111827";ctx.beginPath();ctx.arc(x,y,4,0,Math.PI*2);ctx.fill()})}
-render();
-</script>
-</body>
-</html>
+const tasks=[["steps","8,000–10,000 steps"],["protein","120–140g protein"],["calories","Stay near calorie target"],["water","2–2.5 L water"],["sleep","7–9 h sleep opportunity"],["strength","Strength session if scheduled"],["cardio","Cardio if scheduled"],["mealprep","Plan tomorrow's meals"]];
+function key(d=new Date()){return d.toISOString().slice(0,10)}
+function showTab(id,b){document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));document.getElementById(id).classList.add("active");document.querySelectorAll("nav button").forEach(x=>x.classList.remove("active"));b.classList.add("active");if(id==="progress"){renderHistory();draw()}}
+function done(){return JSON.parse(localStorage.getItem("done_"+key())||"[]")}
+function render(){let d=done();tasksEl=document.getElementById("tasks");tasksEl.innerHTML=tasks.map(t=>`<label class="task"><input type="checkbox" ${d.includes(t[0])?"checked":""} onchange="toggle('${t[0]}')"><span><strong>${t[1]}</strong></span></label>`).join("");count.textContent=d.length+"/8";bar.style.width=d.length/8*100+"%"}
+function toggle(id){let d=done();d=d.includes(id)?d.filter(x=>x!==id):[...d,id];localStorage.setItem("done_"+key(),JSON.stringify(d));render()}
+function addWater(){let n=Number(localStorage.getItem("water_"+key())||0)+1;localStorage.setItem("water_"+key(),n);renderWater();renderHistory()}
+function renderWater(){let n=Number(localStorage.getItem("water_"+key())||0),ml=n*250;waterCount.textContent=n;waterMl.textContent=ml+" ml";waterBar.style.width=Math.min(100,ml/2500*100)+"%"}
+function meals(){return JSON.parse(localStorage.getItem("meals_"+key())||"[]")}
+function addMeal(){let name=mealName.value.trim(),cal=Number(mealCal.value),prot=Number(mealProt.value);if(!name||cal<0||prot<0)return;let a=meals();a.push({name,cal,prot});localStorage.setItem("meals_"+key(),JSON.stringify(a));mealName.value="";mealCal.value="";mealProt.value="";renderMeals();renderHistory()}
+function removeMeal(i){let a=meals();a.splice(i,1);localStorage.setItem("meals_"+key(),JSON.stringify(a));renderMeals();renderHistory()}
+function renderMeals(){let a=meals(),c=a.reduce((x,m)=>x+m.cal,0),p=a.reduce((x,m)=>x+m.prot,0);mealsEl=document.getElementById("meals");mealsEl.innerHTML=a.length?a.map((m,i)=>`<div class="task"><span><strong>${m.name}</strong><small>${m.cal} kcal • ${m.prot} g protein</small></span><button class="secondary" onclick="removeMeal(${i})">✕</button></div>`).join(""):"<p class='muted'>No meals logged yet.</p>";mealTotalCal.textContent=c;mealTotalProt.textContent=Math.round(p);calToday.textContent=c;proteinToday.textContent=Math.round(p);let k=getTodayTarget();kcalToday.textContent=k;targetKcal.textContent=k.toLocaleString();calBar.style.width=Math.min(100,c/k*100)+"%";proteinBar.style.width=Math.min(100,p/130*100)+"%"}
+function getWhoop(d=new Date()){return JSON.parse(localStorage.getItem("whoop_"+key(d))||"null")}
+function saveWhoop(){let d={recovery:Number(wr.value),hrv:Number(wh.value),rhr:Number(whr.value),sleep:Number(ws.value),sleepHours:Number(wsh.value),debt:Number(wd.value),strain:Number(wstrain.value),calories:Number(wcal.value)};if(isNaN(d.recovery)||d.recovery<0||d.recovery>100)return;localStorage.setItem("whoop_"+key(),JSON.stringify(d));renderWhoop();whoopSaved.textContent="Saved today's WHOOP data.";renderHistory()}
+function getTodayTarget(){let d=getWhoop();if(!d)return 1650;let target=1650;if(d.recovery<=33)target+=100;if(d.recovery>=67&&d.strain>=14)target+=100;if(d.sleepHours&&d.sleepHours<6.5)target+=100;if(d.debt&&d.debt>=1.5)target+=100;return Math.round(target/50)*50}
+function renderWhoop(){let d=getWhoop();if(!d)return;todayRecovery.textContent=d.recovery+"%";todayHRV.textContent=d.hrv?d.hrv+" ms":"—";todayRHR.textContent=d.rhr?d.rhr+" bpm":"—";todaySleep.textContent=d.sleep?d.sleep+"%":"—";todayDebt.textContent=d.debt?d.debt+" h":"0";todayStrain.textContent=d.strain?d.strain:"—";wr.value=d.recovery;wh.value=d.hrv||"";whr.value=d.rhr||"";ws.value=d.sleep||"";wsh.value=d.sleepHours||"";wd.value=d.debt||"";wstrain.value=d.strain||"";wcal.value=d.calories||"";let advice=d.recovery>=67?"Green: normal planned training.":d.recovery>=34?"Yellow: train, but consider ~20% less volume/intensity.":"Red: recovery day: walking/mobility or easy Zone 2; skip HIIT/heavy lifting.";if(d.sleepHours&&d.sleepHours<6.5)advice+=" Sleep was short, so prioritise recovery.";if(d.debt&&d.debt>=1.5)advice+=" Sleep debt is elevated.";whoopAdvice.textContent=advice;whoopDetailedAdvice.textContent=advice+" Suggested calorie target today: ~"+getTodayTarget()+" kcal.";workoutLabel.textContent=d.recovery>=67?"Normal":d.recovery>=34?"Reduced":"Recovery";targetKcal.textContent=getTodayTarget();kcalToday.textContent=getTodayTarget()}
+function saveWeight(){let v=Number(weight.value);if(!v)return;let a=JSON.parse(localStorage.getItem("weights")||"{}");a[key()]={weight:v,waist:waist.value?Number(waist.value):null};localStorage.setItem("weights",JSON.stringify(a));weight.value="";waist.value="";renderHistory();draw()}
+function totalsFor(d){let a=JSON.parse(localStorage.getItem("meals_"+d)||"[]");return{cal:a.reduce((x,m)=>x+m.cal,0),prot:a.reduce((x,m)=>x+m.prot,0)}}
+function renderHistory(){let weights=JSON.parse(localStorage.getItem("weights")||"{}"),rows=[];for(let i=0;i<120;i++){let d=new Date();d.setDate(d.getDate()-i);let k=key(d),w=weights[k],q=getWhoop(d),t=totalsFor(k),water=Number(localStorage.getItem("water_"+k)||0);if(w||q||t.cal||water)rows.push(`<tr><td>${k}</td><td>${w?.weight??"—"}</td><td>${q?.recovery??"—"}</td><td>${q?.hrv??"—"}</td><td>${q?.rhr??"—"}</td><td>${q?.sleep??"—"}</td><td>${q?.debt??"—"}</td><td>${q?.strain??"—"}</td><td>${q?.calories??"—"}</td><td>${t.cal||"—"}</td><td>${t.prot||"—"}</td><td>${water?water*250:"—"}</td></tr>`)}history.innerHTML=rows.join("")||"<tr><td colspan='12'>No daily records yet.</td></tr>";weeklyReview.textContent=makeReview()}
+function makeReview(){let w=JSON.parse(localStorage.getItem("weights")||"{}"),vals=Object.values(w).map(x=>x.weight).filter(Boolean);if(vals.length<2)return"Add at least two weigh-ins for a useful trend review.";let first=vals[0],last=vals[vals.length-1];return`Recorded weight range: ${Math.min(...vals).toFixed(1)}–${Math.max(...vals).toFixed(1)} kg. Keep the plan if your recent trend is ~0.4–0.8 kg/week.`}
+function draw(){let c=document.getElementById("chart"),x=c.getContext("2d"),w=JSON.parse(localStorage.getItem("weights")||"{}"),a=Object.entries(w).sort((a,b)=>a[0].localeCompare(b[0]));x.clearRect(0,0,c.width,c.height);x.strokeStyle="#e5e7eb";x.beginPath();x.moveTo(55,20);x.lineTo(55,235);x.lineTo(680,235);x.stroke();if(!a.length){x.fillStyle="#6b7280";x.font="14px sans-serif";x.fillText("Add a weigh-in to see your trend.",80,130);return}let v=a.map(q=>q[1].weight),min=Math.min(60,...v)-1,max=Math.max(75,...v)+1;x.strokeStyle="#111827";x.lineWidth=3;x.beginPath();a.forEach((q,i)=>{let xx=65+i*(610/Math.max(1,a.length-1)),yy=220-(q[1].weight-min)/(max-min)*180;i?x.lineTo(xx,yy):x.moveTo(xx,yy)});x.stroke()}
+render();renderWater();renderMeals();renderWhoop();
+</script></body></html>
